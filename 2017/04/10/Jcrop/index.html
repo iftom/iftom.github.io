@@ -6,18 +6,18 @@
 <p>下面是一个说明书式的介绍，按照我的步骤一步步走下去，功能就可以实现。</p>
 <p>上传头像本身没有什么难点，但是加入了裁剪和预览功能，涉及的前端问题比较多，我途中也踩了许多坑，如果你想快速见到效果，消除对一件未知的事情的焦虑的话，<strong>我建议你先把源码下载下来，放到Tomcat里跑起来，看到真实的效果后，再着手开始写自己的代码。</strong></p>
 <p><strong>详细的原理内容将来会更新。</strong></p>
-<h1 id="第零步——开始前的准备"><a href="#第零步——开始前的准备" class="headerlink" title="第零步——开始前的准备"></a>第零步——开始前的准备</h1><p>在开始这个Demo之前，你必须已经具备以下条件:</p>
+<h1 id="第零步——开始前的准备"><a href="#第零步——开始前的准备" class="headerlink" title="第零步——开始前的准备"></a><strong>第零步——开始前的准备</strong></h1><p>在开始这个Demo之前，你必须已经具备以下条件:</p>
 <ul>
 <li>可以正常访问的SpringMVC或者SpringBoot项目</li>
 <li>确保你的项目可以接受文件上传,具体的配置可以参考代码内的mvc-dispatcher-servlet.xml文件的末尾</li>
 <li>一个上传头像的HTML原型页面，如果没有可以参考代码内的页面</li>
 <li>Jcrop的使用方式可参考代码内的写法，但是还请你仔细阅读Jcrop官方的Demo和文档</li>
 </ul>
-<h1 id="第一步——下载Jcrop相关文件"><a href="#第一步——下载Jcrop相关文件" class="headerlink" title="第一步——下载Jcrop相关文件"></a>第一步——下载Jcrop相关文件</h1><p>登录<a href="jcrop.org">Jcrop官网</a>，下载最新的Jcrop版本(目前是v0.9.12)。</p>
+<h1 id="第一步——下载Jcrop相关文件"><a href="#第一步——下载Jcrop相关文件" class="headerlink" title="第一步——下载Jcrop相关文件"></a><strong>第一步——下载Jcrop相关文件</strong></h1><p>登录<a href="jcrop.org">Jcrop官网</a>，下载最新的Jcrop版本(目前是v0.9.12)。</p>
 <p>Jcrop的官网访问速度可能很慢，不过一定能够打开，加载的时候可以看看这个<a href="http://code.ciaoca.com/jquery/jcrop/demo/" target="_blank" rel="external">线上的中文版的Demo</a>。</p>
 <p>下载完后，把相关的css、js文件放到你的项目内并且在页面上引入即可。</p>
 <p>别忘了还有一张名为jcrop.gif的图片。</p>
-<h1 id="第二步——编写前端页面"><a href="#第二步——编写前端页面" class="headerlink" title="第二步——编写前端页面"></a>第二步——编写前端页面</h1><p><strong>完整代码请参考personalPhoto.jsp</strong>，这里只对几个关键点说明一下。</p>
+<h1 id="第二步——编写前端页面"><a href="#第二步——编写前端页面" class="headerlink" title="第二步——编写前端页面"></a><strong>第二步——编写前端页面</strong></h1><p><strong>完整代码请参考personalPhoto.jsp</strong>，这里只对几个关键点说明一下。</p>
 <p>1.因为各大浏览器的文件框的样式不同，所以页面上很少用到原生的<code>&lt;input type=&quot;file&quot;/&gt;</code>来当做上传文件的按钮。而是把原生的文件框设置为透明（<em>注意不是hidden隐藏</em>），并且将其覆盖在另一个普通的button按钮上来完成样式的统一。</p>
 <p>file按钮透明的css样式:</p>
 <p> #fcupload{<br>  opacity:0;/<em> 透明，非IE </em>/<br>  filter:alpha(opacity=0);/<em> 透明，IE</em>/<br>  position: absolute;<br>  top:123px;<br>  width:135px;<br>  font-size:29px;<br>}</p>
@@ -28,7 +28,7 @@
 <p>1.除了对图片的大小和后缀名的验证之外，你还需要验证图片是否是一张真正的图片，而不是手动改过后缀名的一张伪造的图片。方法是通过JAVA代码获取图片的宽高，如果不能获取到，则认为这是一张非法的图片。代码参考FileUploadUtil.java。（即使是一张真正的图片，依然可以嵌入非法的代码，这里没有做更多的处理，日后更新。）</p>
 <p>2.对图片的裁剪，如果你没有时间研究，直接复制ImgCut.java当做工具类使用即可。</p>
 <p>3.为了方便Demo的展示，我把上传的图片的地址写入了config.properties文件内，请根据自己实际情况修改存储图片地址的方式。</p>
-<h1 id="IE兼容性"><a href="#IE兼容性" class="headerlink" title="IE兼容性"></a>IE兼容性</h1><ul>
+<h1 id="IE兼容性"><a href="#IE兼容性" class="headerlink" title="IE兼容性"></a><strong>IE兼容性</strong></h1><ul>
 <li>IE8和IE9对文件上传支持不太友好，必须将<br>工具 -&gt; Internet选项 -&gt; 安全 -&gt; 自定义级别 -&gt; 找到“其他”中的“将本地文件上载至服务器时包含本地目录路径  打开，浏览器才能取到本地图片的路径。<br><br><br><br><br><br><br><br><br>如果你遇到了什么问题，欢迎联系我，微信:15233639789</li>
 </ul>
 </div></div><div class="post-main post-comment"></div></article><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
