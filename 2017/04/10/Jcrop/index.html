@@ -19,8 +19,8 @@
 <p>别忘了还有一张名为jcrop.gif的图片。</p>
 <h1 id="第二步——编写前端页面"><a href="#第二步——编写前端页面" class="headerlink" title="第二步——编写前端页面"></a><strong>第二步——编写前端页面</strong></h1><p><strong>完整代码请参考personalPhoto.jsp</strong>，这里只对几个关键点说明一下。</p>
 <p>1.因为各大浏览器的文件框的样式不同，所以页面上很少用到原生的<code>&lt;input type=&quot;file&quot;/&gt;</code>来当做上传文件的按钮。而是把原生的文件框设置为透明（<em>注意不是hidden隐藏</em>），并且将其覆盖在另一个普通的button按钮上来完成样式的统一。</p>
-<p>file按钮透明的css样式:</p>
-<p> #fcupload{<br>  opacity:0;/<em> 透明，非IE </em>/<br>  filter:alpha(opacity=0);/<em> 透明，IE</em>/<br>  position: absolute;<br>  top:123px;<br>  width:135px;<br>  font-size:29px;<br>}</p>
+<p>` file按钮透明的css样式:</p>
+<p> #fcupload{<br>  opacity:0;/<em> 透明，非IE </em>/<br>  filter:alpha(opacity=0);/<em> 透明，IE</em>/<br>  position: absolute;<br>  top:123px;<br>  width:135px;<br>  font-size:29px;<br>} `</p>
 <p>你可以通过top和left来调节file按钮的位置，通过font-size来设置file按钮的大小.</p>
 <p>下面是两张对比图来直观的感受效果:<br><img src="http://oo6kxue5a.bkt.clouddn.com/blog_5.png" alt="效果预览_2"><br><img src="http://oo6kxue5a.bkt.clouddn.com/blog_6.png" alt="效果预览_2"></p>
 <p>2.如果你需要添加多个预览图，请参考uploadUserPhoto.css文件和personalPhoto.jsp页面中的id的前缀为preview-pane的几个标签。</p>
