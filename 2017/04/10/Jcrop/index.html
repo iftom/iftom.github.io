@@ -1,4 +1,186 @@
-<!DOCTYPE html><html><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="这里是王晓宇的技术博客"><title>SpringMVC下用Jcrop预览裁剪上传头像 | TOm的Blog</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/highlight.css"><link rel="stylesheet" type="text/css" href="/css/font.css"><link rel="stylesheet" type="text/css" href="/css/noise.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"></head><body><!-- gallery that comes before the header--><article class="wrapper"><div class="post-main"><div class="nav"><nav class="container"><a href="/" class="sidebar-nav-item active">Home</a><a href="/archives" class="sidebar-nav-item">Archives</a></nav><div class="container post-meta"><div class="post-tags"><a class="post-tag-link" href="/tags/Jcrop/">Jcrop</a><a class="post-tag-link" href="/tags/预览裁剪上传头像/">预览裁剪上传头像</a></div><div class="post-time">2017-04-10</div></div></div><div class="container post-header"><h1>SpringMVC下用Jcrop预览裁剪上传头像</h1></div><div class="container post-content"><p>最近用了Jcrop实现了一个上传头像的功能，在这里记录一下，也希望能帮助到有需要的朋友。</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+<title>
+  
+    SpringMVC下用Jcrop预览裁剪上传头像
+  
+</title>
+
+<meta name="description" content="最近用了Jcrop实现了一个上传头像的功能，在这里记录一下，也希望能帮助到有需要的朋友。
+对IE兼容性尚可，IE8和IE9不支持裁剪和预览，IE9以上可正常使用。
+直接上源码:https://github.com/iftom/springmvcdemo_jcrop
+下面是最终效果图:
+
+下面是一个说明书式的介绍，按照我的步骤一步步走下去，功能就可以实现。
+上传头像本身没有什么难点，但是加入了裁剪和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringMVC下用Jcrop预览裁剪上传头像">
+<meta property="og:url" content="http://yoursite.com/2017/04/10/Jcrop/index.html">
+<meta property="og:site_name" content="TOm的Blog">
+<meta property="og:description" content="最近用了Jcrop实现了一个上传头像的功能，在这里记录一下，也希望能帮助到有需要的朋友。
+对IE兼容性尚可，IE8和IE9不支持裁剪和预览，IE9以上可正常使用。
+直接上源码:https://github.com/iftom/springmvcdemo_jcrop
+下面是最终效果图:
+
+下面是一个说明书式的介绍，按照我的步骤一步步走下去，功能就可以实现。
+上传头像本身没有什么难点，但是加入了裁剪和">
+<meta property="og:image" content="http://oo6kxue5a.bkt.clouddn.com/blogblog_1.png">
+<meta property="og:image" content="http://oo6kxue5a.bkt.clouddn.com/blog_2.png">
+<meta property="og:image" content="http://oo6kxue5a.bkt.clouddn.com/blog_3.png">
+<meta property="og:image" content="http://oo6kxue5a.bkt.clouddn.com/blog_4.png">
+<meta property="og:image" content="http://oo6kxue5a.bkt.clouddn.com/blog_5.png">
+<meta property="og:image" content="http://oo6kxue5a.bkt.clouddn.com/blog_6.png">
+<meta property="og:updated_time" content="2017-04-10T10:01:52.955Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SpringMVC下用Jcrop预览裁剪上传头像">
+<meta name="twitter:description" content="最近用了Jcrop实现了一个上传头像的功能，在这里记录一下，也希望能帮助到有需要的朋友。
+对IE兼容性尚可，IE8和IE9不支持裁剪和预览，IE9以上可正常使用。
+直接上源码:https://github.com/iftom/springmvcdemo_jcrop
+下面是最终效果图:
+
+下面是一个说明书式的介绍，按照我的步骤一步步走下去，功能就可以实现。
+上传头像本身没有什么难点，但是加入了裁剪和">
+<meta name="twitter:image" content="http://oo6kxue5a.bkt.clouddn.com/blogblog_1.png">
+
+
+  <link rel="alternative" href="/atom.xml" title="TOm的Blog" type="application/atom+xml">
+
+
+
+  <link rel="icon" href="/favicon.ico">
+
+
+<link rel="stylesheet" href="/perfect-scrollbar/css/perfect-scrollbar.min.css">
+<link rel="stylesheet" href="/styles/main.css">
+
+
+
+
+
+
+</head>
+<body
+  
+    class="monochrome"
+  
+  >
+  <div class="mobile-header">
+  <button class="sidebar-toggle" type="button">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+  <a class="title" href="/">TOm的Blog</a>
+</div>
+
+  <div class="main-container">
+    <div class="sidebar">
+  <div class="header">
+    <h1 class="title"><a href="/">TOm的Blog</a></h1>
+    
+    <div class="info">
+      <div class="content">
+        
+          <div class="description">嘿嘿嘿</div>
+        
+        
+          <div class="author">TOm</div>
+        
+      </div>
+      
+        <div class="avatar">
+          
+            <a href="/about"><img src="http://oo6kxue5a.bkt.clouddn.com/%E5%81%A5%E8%BA%AB.jpg"></a>
+          
+        </div>
+      
+    </div>
+  </div>
+  <div class="body">
+    
+      
+        <ul class="nav">
+          
+            
+              <li class="tag-list-container">
+                <a href="javascript:;">Tag</a>
+                <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Jcrop/">Jcrop</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/welcom/">welcom</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/预览裁剪上传头像/">预览裁剪上传头像</a><span class="tag-list-count">1</span></li></ul>
+              </li>
+            
+          
+            
+              <li class="archive-list-container">
+                <a href="javascript:;">Archive</a>
+                <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/">2017</a><span class="archive-list-count">2</span></li></ul>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="/" title="Homepage">Homepage</a>
+              </li>
+            
+          
+            
+              <li>
+                <a href="/archives" title="By Year">By Year</a>
+              </li>
+            
+          
+        </ul>
+      
+        <ul class="nav">
+          
+            
+              <li>
+                <a href="https://github.com/iftom" title="Github" target="_blank" rel="external">Github</a>
+              </li>
+            
+          
+        </ul>
+      
+    
+  </div>
+</div>
+
+    <div class="main-content">
+      
+        <div style="max-width: 1000px">
+      
+          <article id="post-Jcrop" class="article article-type-post">
+  
+    <h1 class="article-header">
+      SpringMVC下用Jcrop预览裁剪上传头像
+    </h1>
+  
+  
+
+  <div class="article-info">
+    <span class="article-date">
+  2017-04-10
+</span>
+
+    
+
+    
+	<span class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Jcrop/">Jcrop</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/预览裁剪上传头像/">预览裁剪上传头像</a></li></ul>
+	</span>
+
+
+  </div>
+  <div class="article-entry">
+    <p>最近用了Jcrop实现了一个上传头像的功能，在这里记录一下，也希望能帮助到有需要的朋友。</p>
 <p>对IE兼容性尚可，IE8和IE9不支持裁剪和预览，IE9以上可正常使用。</p>
 <p><strong>直接上源码:<a href="https://github.com/iftom/springmvcdemo_jcrop" target="_blank" rel="external">https://github.com/iftom/springmvcdemo_jcrop</a></strong></p>
 <p>下面是最终效果图:</p>
@@ -31,7 +213,120 @@
 <h1 id="IE兼容性"><a href="#IE兼容性" class="headerlink" title="IE兼容性"></a><strong>IE兼容性</strong></h1><ul>
 <li>IE8和IE9对文件上传支持不太友好，必须将<br>工具 -&gt; Internet选项 -&gt; 安全 -&gt; 自定义级别 -&gt; 找到“其他”中的“将本地文件上载至服务器时包含本地目录路径  打开，浏览器才能取到本地图片的路径。<br><br><br><br><br><br><br><br><br>如果你遇到了什么问题，欢迎联系我，微信:15233639789</li>
 </ul>
-</div></div><div class="post-main post-comment"></div></article><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.css"><script src="//cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script><script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script><script>$(document).ready(function() {
-    $(".fancybox").fancybox();
-});
-</script></body></html>
+
+  </div>
+  <footer class="article-footer">
+    
+  <div class="cc">
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/deed.en" target="_blank" title="Attribution-ShareAlike">
+      <img src="/images/cc/cc.png">
+      
+          <img src="/images/cc/by.png">
+        
+          <img src="/images/cc/sa.png">
+      
+      <span>
+        This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+      </span>
+    </a>
+  </div>
+
+
+    
+
+  </footer>
+</article>
+
+
+
+
+
+
+
+          <div class="main-footer">
+  
+    © 2017 TOm的Blog - Powered by <a href="http://hexo.io" target="_blank">Hexo</a> - Theme <a href="https://github.com/denjones/hexo-theme-chan" target="_blank">Chan</a>
+  
+</div>
+
+      
+        </div>
+      
+    </div>
+  </div>
+  <script src="//apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="/PhotoSwipe/photoswipe.css">
+  <link rel="stylesheet" href="/PhotoSwipe/default-skin/default-skin.css">
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+             It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+      <!-- Container that holds slides.
+                PhotoSwipe keeps only 3 of them in the DOM to save memory.
+                Don't modify these 3 pswp__item elements, data is added later on. -->
+      <div class="pswp__container">
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+        <div class="pswp__item"></div>
+      </div>
+
+      <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+      <div class="pswp__ui pswp__ui--hidden">
+
+        <div class="pswp__top-bar">
+
+          <!--  Controls are self-explanatory. Order can be changed. -->
+
+          <div class="pswp__counter"></div>
+
+          <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+          <button class="pswp__button pswp__button--share" title="Share"></button>
+
+          <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+          <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+          <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+          <!-- element will get class pswp__preloader--active when preloader is running -->
+          <div class="pswp__preloader">
+            <div class="pswp__preloader__icn">
+              <div class="pswp__preloader__cut">
+                <div class="pswp__preloader__donut"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+          <div class="pswp__share-tooltip"></div>
+        </div>
+
+        <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+
+        <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+
+        <div class="pswp__caption">
+          <div class="pswp__caption__center"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/PhotoSwipe/photoswipe.js"></script>
+  <script src="/PhotoSwipe/photoswipe-ui-default.js"></script>
+
+
+<script src="/perfect-scrollbar/js/min/perfect-scrollbar.min.js"></script>
+<script src="/scripts/main.js"></script>
+
+</body>
+</html>
