@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>TOm的Blog</title>
-  
+  <subtitle>王晓宇&#39;s博客</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-10T10:01:52.955Z</updated>
+  <updated>2017-09-15T08:47:26.751Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,9 +20,10 @@
     <link href="http://yoursite.com/2017/04/10/Jcrop/"/>
     <id>http://yoursite.com/2017/04/10/Jcrop/</id>
     <published>2017-04-10T08:17:25.000Z</published>
-    <updated>2017-04-10T10:01:52.955Z</updated>
+    <updated>2017-09-15T08:47:26.751Z</updated>
     
     <content type="html"><![CDATA[<p>最近用了Jcrop实现了一个上传头像的功能，在这里记录一下，也希望能帮助到有需要的朋友。</p>
+<a id="more"></a>
 <p>对IE兼容性尚可，IE8和IE9不支持裁剪和预览，IE9以上可正常使用。</p>
 <p><strong>直接上源码:<a href="https://github.com/iftom/springmvcdemo_jcrop" target="_blank" rel="external">https://github.com/iftom/springmvcdemo_jcrop</a></strong></p>
 <p>下面是最终效果图:</p>
@@ -60,8 +61,6 @@
     <summary type="html">
     
       &lt;p&gt;最近用了Jcrop实现了一个上传头像的功能，在这里记录一下，也希望能帮助到有需要的朋友。&lt;/p&gt;
-&lt;p&gt;对IE兼容性尚可，IE8和IE9不支持裁剪和预览，IE9以上可正常使用。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;直接上源码:&lt;a href=&quot;https://github.com
     
     </summary>
     
@@ -73,18 +72,19 @@
   </entry>
   
   <entry>
-    <title></title>
+    <title>欢迎来到TOm的Blog</title>
     <link href="http://yoursite.com/2017/04/01/test/"/>
     <id>http://yoursite.com/2017/04/01/test/</id>
     <published>2017-04-01T07:25:33.858Z</published>
-    <updated>2017-04-10T05:54:50.943Z</updated>
+    <updated>2017-09-15T08:50:55.470Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="欢迎来到TOm的Blog"><a href="#欢迎来到TOm的Blog" class="headerlink" title="欢迎来到TOm的Blog"></a>欢迎来到TOm的Blog</h1><h4 id="这是王晓宇的技术博客"><a href="#这是王晓宇的技术博客" class="headerlink" title="这是王晓宇的技术博客"></a>这是王晓宇的技术博客</h4><p>技术栈:Java,目前也只有Java</p>
+    <content type="html"><![CDATA[<h4 id="这是王晓宇的技术博客"><a href="#这是王晓宇的技术博客" class="headerlink" title="这是王晓宇的技术博客"></a>这是王晓宇的技术博客</h4><p>技术栈:Java,目前也只有Java</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;欢迎来到TOm的Blog&quot;&gt;&lt;a href=&quot;#欢迎来到TOm的Blog&quot; class=&quot;headerlink&quot; title=&quot;欢迎来到TOm的Blog&quot;&gt;&lt;/a&gt;欢迎来到TOm的Blog&lt;/h1&gt;&lt;h4 id=&quot;这是王晓宇的技术博客&quot;&gt;&lt;a href=&quot;#这是王
+      &lt;h4 id=&quot;这是王晓宇的技术博客&quot;&gt;&lt;a href=&quot;#这是王晓宇的技术博客&quot; class=&quot;headerlink&quot; title=&quot;这是王晓宇的技术博客&quot;&gt;&lt;/a&gt;这是王晓宇的技术博客&lt;/h4&gt;&lt;p&gt;技术栈:Java,目前也只有Java&lt;/p&gt;
+
     
     </summary>
     
